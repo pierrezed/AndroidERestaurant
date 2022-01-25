@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">AndroidERestaurant</string>
-    <string name="bienvenue_sur">Bienvenue sur</string>
-    <string name="Entrees">Entrées</string>
-    <string name="Plats">Plats</string>
+    <string name="Welcome">Bienvenue sur</string>
+    <string name="home_image">home_image</string>
+    <string name="starters">Entrees</string>
+    <string name="main_course">Plats</string>
     <string name="Desserts">Desserts</string>
-    <string name="icon_restaurant">Icon restaurant</string>
+    <string name="starter_activity">starters</string>
 </resources>
