@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context="MainActivity">
 
+    <TextView
+        android:id="@+id/maincourse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_thin"
+        android:text="@string/main_course"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/starters"
+        app:layout_constraintVertical_bias="0.120000005" />
+
     <ImageView
         android:id="@+id/home_image"
         android:layout_width="358dp"

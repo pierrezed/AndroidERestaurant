@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        // get reference to button
         // CREATION TOAST
         // val btnclickme = findViewById<TextView>(R.id.text_click)
         // set on-click listener
@@ -24,9 +23,17 @@ class MainActivity : AppCompatActivity() {
         //  val duration = Toast.LENGTH_SHORT
         //  val toast = Toast.makeText(applicationContext, text, duration)
         //  toast.show()
-        val btnclickme = findViewById<TextView>(R.id.starters)
-        btnclickme.setOnClickListener {
+
+        val btnstarter = findViewById<TextView>(R.id.starters)
+        val btnmaincourse = findViewById<TextView>(R.id.maincourse)
+
+        btnstarter.setOnClickListener {
             val intent = Intent(this, StarterActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }
+        btnmaincourse.setOnClickListener {
+            val intent = Intent(this, MainCourseActivity::class.java)
             // start your next activity
             startActivity(intent)
         }
