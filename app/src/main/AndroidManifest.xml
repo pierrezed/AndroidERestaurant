@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidERestaurant">
         <activity
+            android:name=".DessertActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainCourseActivity"
             android:exported="false" />
         <activity
@@ -21,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StarterActivity"></activity>
+        <activity android:name=".StarterActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

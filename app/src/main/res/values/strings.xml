@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">AndroidERestaurant</string>
-    <string name="Welcome">Bienvenue sur</string>
+    <string name="Welcome">Bienvenue sur AndroidERestaurant</string>
     <string name="home_image">home_image</string>
+    <string name="mainCourse_image">mainCourse_image</string>
     <string name="starters">Entrees</string>
     <string name="main_course">Plats</string>
     <string name="Desserts">Desserts</string>
     <string name="starter_activity">starters</string>
+    <string name="text_Cell">Item</string>
 </resources>

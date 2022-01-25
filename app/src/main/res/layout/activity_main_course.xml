@@ -7,13 +7,44 @@
     tools:context=".MainCourseActivity">
 
     <TextView
-        android:id="@+id/maincourse"
+        android:id="@+id/maincourseTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/main_course"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.25" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/maincourseRecycleView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maincourseTitle" />
+
+    <ImageView
+        android:id="@+id/mainCourseFrontImage"
+        android:layout_width="203dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="38dp"
+        android:contentDescription="@string/mainCourse_image"
+        app:layout_constraintBottom_toTopOf="@+id/maincourseTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/main_course" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
