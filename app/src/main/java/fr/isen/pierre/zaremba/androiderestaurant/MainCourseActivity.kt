@@ -20,9 +20,6 @@ class MainCourseActivity : AppCompatActivity() {
 
         binding.maincourseTitle.text = intent.getStringExtra( "category_type")
 
-        // getting the recyclerview by its id
-        // val recyclerview = findViewById<RecyclerView>(R.id.maincourseRecycleView)
-
         // this creates a vertical layout Manager
         binding.maincourseRecycleView.layoutManager = LinearLayoutManager(this)
 
@@ -30,7 +27,6 @@ class MainCourseActivity : AppCompatActivity() {
         val data = ArrayList<ItemsViewModel>()
 
         // This loop will create 20 Views containing
-        // the image with the count of view
         for (i in 1..20) {
             data.add(ItemsViewModel( "Item " + i))
         }
@@ -45,9 +41,6 @@ class MainCourseActivity : AppCompatActivity() {
         data.add(ItemsViewModel( "Plat du jour"))
         data.add(ItemsViewModel( "Methode Martinez"))
         data.add(ItemsViewModel( "Gratin dauphinois"))
-
-        // This will pass the ArrayList to our Adapter
-        // val adapter = CustomAdapter(data)
 
         // Setting the Adapter with the recyclerview
         binding.maincourseRecycleView.adapter = CustomAdapter(data) {

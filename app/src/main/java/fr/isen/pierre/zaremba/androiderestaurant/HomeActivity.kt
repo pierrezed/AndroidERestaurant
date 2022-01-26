@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
             changeActivity("desserts")
         }
 
-
         // CREATION TOAST
         // val btnclickme = findViewById<TextView>(R.id.text_click)
         // set on-click listener
@@ -40,17 +39,6 @@ class MainActivity : AppCompatActivity() {
         //  val duration = Toast.LENGTH_SHORT
         //  val toast = Toast.makeText(applicationContext, text, duration)
         //  toast.show()
-
-        /*val btnstarter = findViewById<TextView>(R.id.starterTitle)
-        val btnmaincourse = findViewById<TextView>(R.id.maincourseTitle)
-
-        btnstarter.setOnClickListener {
-            changeActivity("Entrees")
-        }
-
-        btnmaincourse.setOnClickListener {
-            changeActivity("Plats")
-        }*/
 
     }
     private fun changeActivity(category: String) {
