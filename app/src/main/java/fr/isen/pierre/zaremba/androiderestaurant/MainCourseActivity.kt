@@ -1,5 +1,6 @@
 package fr.isen.pierre.zaremba.androiderestaurant
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,9 +31,9 @@ class MainCourseActivity : AppCompatActivity() {
 
         // This loop will create 20 Views containing
         // the image with the count of view
-        /*for (i in 1..20) {
+        for (i in 1..20) {
             data.add(ItemsViewModel( "Item " + i))
-        }*/
+        }
         data.add(ItemsViewModel( "Steack Tartare"))
         data.add(ItemsViewModel( "Pizza"))
         data.add(ItemsViewModel( "Poulet basquaise"))
@@ -41,14 +42,18 @@ class MainCourseActivity : AppCompatActivity() {
         data.add(ItemsViewModel( "Oeuf mimosa"))
         data.add(ItemsViewModel( "Burger du chef"))
         data.add(ItemsViewModel( "Aioli"))
-        data.add(ItemsViewModel( "Speciale Patrick"))
+        data.add(ItemsViewModel( "Plat du jour"))
         data.add(ItemsViewModel( "Methode Martinez"))
         data.add(ItemsViewModel( "Gratin dauphinois"))
 
         // This will pass the ArrayList to our Adapter
-        val adapter = CustomAdapter(data)
+        // val adapter = CustomAdapter(data)
 
         // Setting the Adapter with the recyclerview
-        binding.maincourseRecycleView.adapter = adapter
+        binding.maincourseRecycleView.adapter = CustomAdapter(data) {
+            val intent = Intent(this, DetailActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

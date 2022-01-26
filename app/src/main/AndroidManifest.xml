@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidERestaurant">
         <activity
+            android:name=".DetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_detail"
+            android:theme="@style/Theme.AndroidERestaurant.Fullscreen" />
+        <activity
             android:name=".DessertActivity"
             android:exported="false" />
         <activity

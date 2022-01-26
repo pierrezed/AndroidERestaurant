@@ -3,11 +3,9 @@ package fr.isen.pierre.zaremba.androiderestaurant
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-
-class StarterActivity : AppCompatActivity() {
-
+class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_starters)
+        setContentView(R.layout.activity_detail)
     }
 }

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/guidelineMainCourse"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainCourseActivity">
@@ -10,18 +11,20 @@
         android:id="@+id/maincourseTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/courgette"
         android:text="@string/main_course"
+        android:textColor="#FF5722"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.304" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/maincourseRecycleView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="413dp"
+        android:layout_height="351dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
@@ -32,19 +35,37 @@
         app:layout_constraintTop_toBottomOf="@+id/maincourseTitle" />
 
     <ImageView
-        android:id="@+id/mainCourseFrontImage"
-        android:layout_width="203dp"
-        android:layout_height="113dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="104dp"
-        android:layout_marginBottom="38dp"
+        android:id="@+id/imageMainCourseTitle"
+        android:layout_width="292dp"
+        android:layout_height="141dp"
         android:contentDescription="@string/mainCourse_image"
-        app:layout_constraintBottom_toTopOf="@+id/maincourseTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/maincourseRecycleView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/main_course" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/restaurant" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="163dp" />
+
+    <View
+        android:id="@+id/DividerMainCourse"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="26dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/maincourseRecycleView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maincourseTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
