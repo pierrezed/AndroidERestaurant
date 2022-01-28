@@ -3,10 +3,16 @@ package fr.isen.pierre.zaremba.androiderestaurant
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import fr.isen.pierre.zaremba.androiderestaurant.databinding.ActivityHomeBinding
 import fr.isen.pierre.zaremba.androiderestaurant.databinding.ActivityMainCourseBinding
+import org.json.JSONObject
 
 class MainCourseActivity : AppCompatActivity() {
 
@@ -48,5 +54,6 @@ class MainCourseActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        }
+
     }
-}
