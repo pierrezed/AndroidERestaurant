@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import fr.isen.pierre.zaremba.androiderestaurant.databinding.ActivityMainCourseBinding
 
 class CustomAdapter(private val mainCourses: List<ItemsViewModel>, val onItemsViewModelClicked: (ItemsViewModel) -> Unit) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+
 
     // Holds the views for adding it to text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
@@ -45,5 +47,13 @@ class CustomAdapter(private val mainCourses: List<ItemsViewModel>, val onItemsVi
         return mainCourses.size
     }
 
+
+}
+
+class ActivityAdapterCuston {
+
+}
+
+class ActivityAdpterCuston {
 
 }
