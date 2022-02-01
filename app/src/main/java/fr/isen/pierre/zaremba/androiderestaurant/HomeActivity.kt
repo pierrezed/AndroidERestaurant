@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import fr.isen.pierre.zaremba.androiderestaurant.databinding.ActivityHomeBinding
 
 
@@ -28,17 +27,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.dessertTitle.setOnClickListener {
-            changeActivity("desserts")
+            changeActivity("Desserts")
         }
 
-        // CREATION TOAST
-        // val btnclickme = findViewById<TextView>(R.id.text_click)
-        // set on-click listener
-        //btn_click_me.setOnClickListener {
-        //  val text = "Entrees"
-        //  val duration = Toast.LENGTH_SHORT
-        //  val toast = Toast.makeText(applicationContext, text, duration)
-        //  toast.show()
+        /*CREATION TOAST
+        val btnclickme = findViewById<TextView>(R.id.text_click)
+        set on-click listener
+        btn_click_me.setOnClickListener {
+        val text = "Entrees"
+        val duration = Toast.LENGTH_SHORT
+        val toast = Toast.makeText(applicationContext, text, duration)
+        toast.show()*/
 
     }
     private fun changeActivity(category: String) {

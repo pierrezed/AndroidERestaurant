@@ -4,7 +4,7 @@
     <string name="Welcome2">Android EResto</string>
     <string name="home_image">home_image</string>
     <string name="mainCourse_image">mainCourse_image</string>
-    <string name="starters">Entrees</string>
+    <string name="starters">Entrées</string>
     <string name="main_course">Plats</string>
     <string name="Desserts">Desserts</string>
     <string name="starter_activity">starters</string>
@@ -12,4 +12,11 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="detail_maincourse">detailMainCourseText</string>
     <string name="RunVolley">RunVolley</string>
+    <string name="dishpicture">dishPicture</string>
+    <string name="dishPrice">dishPrice</string>
+    <string name="DetailView">DetailView</string>
+    <string name="textIngredient">textIngredient</string>
+    <string name="minusButton">-</string>
+    <string name="plusButton">+</string>
+    <string name="nbInBucket">1</string>
 </resources>

@@ -1,26 +1,30 @@
 package fr.isen.pierre.zaremba.androiderestaurant
 
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import fr.isen.pierre.zaremba.androiderestaurant.databinding.ActivityMainCourseBinding
+import com.squareup.picasso.Picasso
 
-class CustomAdapter(private val mainCourses: List<ItemsViewModel>, val onItemsViewModelClicked: (ItemsViewModel) -> Unit) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
+class CustomAdapter(private val mainCourses: List<DishModel>, val onItemsViewModelClicked: (DishModel) -> Unit) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     // Holds the views for adding it to text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
 
         // Ne sera pas modifier pour le binding : trop de changement....
-        val textView: TextView = itemView.findViewById(R.id.cellmaincourseTextList)
-
+        val dishName: TextView = itemView.findViewById(R.id.cellmaincourseTextList)
+        val dishPicture: ImageView = itemView.findViewById(R.id.dishPicture)
+        val dishPrice: TextView = itemView.findViewById(R.id.dishPrice)
     }
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
+
 
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
@@ -32,10 +36,16 @@ class CustomAdapter(private val mainCourses: List<ItemsViewModel>, val onItemsVi
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val ItemsViewModel = mainCourses[position]
+        val dish = mainCourses[position]
 
         // sets the text to the textview from our itemHolder class
-        holder.textView.text = ItemsViewModel.text
+        holder.dishName.text = dish.name_fr
+        Picasso.get()
+            .load(mainCourses[position].getFirstPicture())
+            .error(R.drawable.resto)
+            .placeholder(R.drawable.resto)
+            .into(holder.dishPicture)
+        holder.dishPrice.text = mainCourses[position].getFormattedPrice()
         holder.itemView.setOnClickListener {
             onItemsViewModelClicked(mainCourses[position])
         }
@@ -50,10 +60,6 @@ class CustomAdapter(private val mainCourses: List<ItemsViewModel>, val onItemsVi
 
 }
 
-class ActivityAdapterCuston {
 
-}
 
-class ActivityAdpterCuston {
 
-}

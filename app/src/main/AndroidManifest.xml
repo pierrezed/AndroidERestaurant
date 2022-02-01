@@ -16,9 +16,7 @@
             android:exported="false"
             android:label="@string/title_activity_detail"
             android:theme="@style/Theme.AndroidERestaurant.Fullscreen" />
-        <activity
-            android:name=".DessertActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainCourseActivity"
             android:exported="false" />
@@ -31,7 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StarterActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
