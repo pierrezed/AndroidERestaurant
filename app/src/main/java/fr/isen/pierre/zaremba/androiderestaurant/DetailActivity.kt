@@ -1,6 +1,7 @@
 package fr.isen.pierre.zaremba.androiderestaurant
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -72,6 +73,11 @@ class DetailActivity : AppCompatActivity() {
             val snack = Snackbar.make(it,"Add to bucket !",Snackbar.LENGTH_SHORT)
             snack.show()
 
+            val saveBucketPreference = this?.getSharedPreferences("mySavedBucket",Context.MODE_PRIVATE)
+            val editeur = saveBucketPreference.edit()
+            editeur.putInt(nbInBucket.toString(),  nbInBucket)
+
         }
+
     }
 }

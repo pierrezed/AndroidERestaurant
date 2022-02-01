@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".DetailActivity" >
+    android:background="#000000"
+    tools:context=".DetailActivity">
 
     <TextView
         android:id="@+id/detailtextView"
@@ -92,6 +92,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/courgette"
         android:text="@string/nbInBucket"
+        android:textColor="#F8F5F5"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/plusButton"
@@ -109,10 +110,10 @@
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.944"
+        app:layout_constraintVertical_bias="0.878"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
