@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
-import com.squareup.picasso.Picasso
 import fr.isen.pierre.zaremba.androiderestaurant.databinding.ActivityDetailBinding
 
 
@@ -17,19 +15,22 @@ class DetailActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
 
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // récupération de l'objet plat
         val detailDish = intent.getSerializableExtra("dish") as DishModel
-        // Récupération d'une simple image
+
+        binding.dishDetailPager.adapter = DishDetailAdapter(this, detailDish.images)
+
+
+        /*Récupération d'une simple image
         Picasso.get()
             .load(detailDish.getFirstPicture())
             .error(R.drawable.resto)
             .placeholder(R.drawable.resto)
-            .into(binding.imageDetailView)
+            .into(binding.imageDetailView)*/
 
 
         // mise en place du titre du plat avec l'objet
