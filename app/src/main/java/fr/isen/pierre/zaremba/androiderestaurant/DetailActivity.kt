@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.usage.NetworkStats
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -18,6 +19,9 @@ import fr.isen.pierre.zaremba.androiderestaurant.databinding.ActivityDetailBindi
 
 class DetailActivity : AppCompatActivity() {
 
+    private var nbTotalInBucket = 0
+    lateinit var sharedPreferences: SharedPreferences
+
     private lateinit var binding: ActivityDetailBinding
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -26,25 +30,30 @@ class DetailActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here.
+        // Affichage du panier dans la toolbar
         val id = item.getItemId()
 
         if (id == R.id.action_one) {
-            Toast.makeText(this, "Item One Clicked", Toast.LENGTH_LONG).show()
+            //Toast.makeText(this, "Item One Clicked", Toast.LENGTH_LONG).show()
+            val intent = Intent(this, BucketActivity::class.java)
+            startActivity(intent)
             return true
         }
         return super.onOptionsItemSelected(item)
     }
 
-    @SuppressLint("SetTextI18n")
+    // @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //val toolbar: Toolbar = findViewById(R.id.detailToolbar)
-        //setSupportActionBar(toolbar)
+        //Enregistrement des preferences utilisateur
+        sharedPreferences = getSharedPreferences("mySavedBucket",Context.MODE_PRIVATE)
+        val editeur = sharedPreferences.edit()
+        editeur.putInt("nbTotalInBucket",  nbTotalInBucket)
+        editeur.apply()
 
         // récupération de l'objet plat
         val detailDish = intent.getSerializableExtra("dish") as DishModel
@@ -58,14 +67,6 @@ class DetailActivity : AppCompatActivity() {
             binding.dishDetailPager.isVisible = false
         }
 
-        /*Récupération d'une simple image
-        Picasso.get()
-            .load(detailDish.getFirstPicture())
-            .error(R.drawable.resto)
-            .placeholder(R.drawable.resto)
-            .into(binding.imageDetailView)*/
-
-
         // mise en place du titre du plat avec l'objet
         binding.detailtextView.text = detailDish.name_fr
         // récupération et affichage des ingrédients
@@ -73,18 +74,13 @@ class DetailActivity : AppCompatActivity() {
             detailDish.ingredients.joinToString(", ") { it -> "${it.name_fr}" }
 
         var nbInBucket: Int = 1
+
         getTotalPrice(1)
-        /*binding.textBucket.text = nbInBucket.toString()
-        var resultPrice: Float = nbInBucket * detailDish.prices[0].price.toString().toFloat()
-        binding.bucketButton.text = "Total " + resultPrice.toString() + "€"*/
 
         binding.plusButton.setOnClickListener {
             if (nbInBucket < 10) {
                 nbInBucket++
                 getTotalPrice(nbInBucket)
-                /*binding.textBucket.text = nbInBucket.toString()
-                var resultPrice: Float = nbInBucket * detailDish.prices[0].price.toString().toFloat()
-                binding.bucketButton.text = "Total " + resultPrice.toString() + "€"*/
             }
 
         }
@@ -92,36 +88,40 @@ class DetailActivity : AppCompatActivity() {
             if (nbInBucket > 1) {
                 nbInBucket--
                 getTotalPrice(nbInBucket)
-                /*binding.textBucket.text = nbInBucket.toString()
-                var resultPrice: Float = nbInBucket * detailDish.prices[0].price.toString().toFloat()
-                binding.bucketButton.text = "Total" + resultPrice.toString() + "€"*/
             }
         }
 
-        binding.bucketButton.setOnClickListener{
-            /*CREATION TOAST
-            val text = "Add to Bucket"
-            val duration = Toast.LENGTH_SHORT
-            val toast = Toast.makeText(applicationContext, text, duration)
-            toast.show()*/
+        nbTotalInBucket = sharedPreferences.getInt("nbTotalInBucket", nbTotalInBucket) + nbInBucket
+
+        binding.totalButton.setOnClickListener{
+
+            // Affichage de l'ajout dans le panier
             val snack = Snackbar.make(it,"Add to bucket !",Snackbar.LENGTH_SHORT)
             snack.show()
 
-            val saveBucketPreference = getSharedPreferences("mySavedBucket",Context.MODE_PRIVATE)
-            val editeur = saveBucketPreference.edit()
-            editeur.putInt("nbInBucket",  nbInBucket)
-            editeur.apply()
+            // CREATION TOAST pour affichage de la quantité dans le panier
+
+            val text = nbTotalInBucket.toString()
+            val duration = Toast.LENGTH_SHORT
+            val toast = Toast.makeText(applicationContext, text, duration)
+            toast.setGravity(0, 400, -780)
+            toast.show()
+
+
 
             /*val intent = Intent(this, AccountActivity::class.java)
             startActivity(intent)*/
 
         }
+        //Enregistrement des preferences utilisateur pour conserver l'ajout au panier
+        editeur.putInt("nbTotalInBucket",  nbTotalInBucket)
+        editeur.apply()
     }
     // Fonction d'affichage du total
     private fun getTotalPrice (nbInBucket: Int) {
         val detailDish = intent.getSerializableExtra("dish") as DishModel
         binding.textBucket.text = nbInBucket.toString()
-        var resultPrice: Float = nbInBucket * detailDish.prices[0].price.toString().toFloat()
-        binding.bucketButton.text = "Total" + resultPrice.toString() + "€"
+        var resultPrice: Float = nbInBucket * detailDish.prices[0].price.toFloat()
+        binding.totalButton.text = "Total" + resultPrice.toString() + "€"
     }
 }

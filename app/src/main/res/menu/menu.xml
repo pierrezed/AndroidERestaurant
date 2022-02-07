@@ -6,6 +6,7 @@
         android:title="@string/itembucket"
         android:id="@+id/action_one"
         android:icon="@drawable/basket"
+        android:actionLayout="@layout/activity_detail"
         app:showAsAction="always"
 
         />
