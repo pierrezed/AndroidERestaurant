@@ -8,7 +8,7 @@ data class DishResult (val data: List<CategoryModel>): Serializable
 
 data class CategoryModel (val name_fr: String, val items: List<DishModel>): Serializable
 
-data class DishModel (val name_fr: String, @SerializedName (value = "images") val images: List<String>, val ingredients: List<Ingredient>, val prices: List<Price>): Serializable {
+data class DishModel (val name_fr: String ="", @SerializedName (value = "images") val images: List<String> = arrayListOf(), val ingredients: List<Ingredient> = arrayListOf(), val prices: List<Price> = arrayListOf()): Serializable {
     fun getFirstPicture() = if(images[0].isNotEmpty()) images[0] else null
     fun getFormattedPrice() = prices[0].price + "€"
 }

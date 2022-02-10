@@ -13,14 +13,20 @@ import android.widget.Toast
 import android.widget.Toolbar
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.GsonBuilder
 import fr.isen.pierre.zaremba.androiderestaurant.databinding.ActivityDetailBinding
 import fr.isen.pierre.zaremba.androiderestaurant.databinding.ActivityDetailBinding.*
+import fr.isen.pierre.zaremba.androiderestaurant.model.DataBucket
+import fr.isen.pierre.zaremba.androiderestaurant.model.DataBucketItem
+import java.io.File
 
 
 class DetailActivity : AppCompatActivity() {
 
     private var nbTotalInBucket = 0
     lateinit var sharedPreferences: SharedPreferences
+    var basket: DataBucket = DataBucket()
+    var basketItem: DataBucketItem = DataBucketItem()
 
     private lateinit var binding: ActivityDetailBinding
 
@@ -42,7 +48,6 @@ class DetailActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    // @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -51,12 +56,10 @@ class DetailActivity : AppCompatActivity() {
 
         //Enregistrement des preferences utilisateur
         sharedPreferences = getSharedPreferences("mySavedBucket",Context.MODE_PRIVATE)
-        val editeur = sharedPreferences.edit()
-        editeur.putInt("nbTotalInBucket",  nbTotalInBucket)
-        editeur.apply()
 
         // récupération de l'objet plat
         val detailDish = intent.getSerializableExtra("dish") as DishModel
+        basketItem.dish = detailDish
 
         if (detailDish.images.isNotEmpty() && detailDish.images[0].isNotEmpty()) {
             binding.defaultImagePager.isVisible = false
@@ -73,9 +76,9 @@ class DetailActivity : AppCompatActivity() {
         binding.textIngredient.text =
             detailDish.ingredients.joinToString(", ") { it -> "${it.name_fr}" }
 
-        var nbInBucket: Int = 1
+        var nbInBucket: Int = 0
 
-        getTotalPrice(1)
+        getTotalPrice(0)
 
         binding.plusButton.setOnClickListener {
             if (nbInBucket < 10) {
@@ -91,32 +94,37 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-        nbTotalInBucket = sharedPreferences.getInt("nbTotalInBucket", nbTotalInBucket) + nbInBucket
-
         binding.totalButton.setOnClickListener{
 
             // Affichage de l'ajout dans le panier
             val snack = Snackbar.make(it,"Add to bucket !",Snackbar.LENGTH_SHORT)
             snack.show()
 
-            // CREATION TOAST pour affichage de la quantité dans le panier
+            //Calcul du total des plats dans le panier
+            nbTotalInBucket = sharedPreferences.getInt("nbTotalInBucket", nbTotalInBucket) + nbInBucket
 
+            // CREATION TOAST pour affichage de la quantité dans le panier
             val text = nbTotalInBucket.toString()
             val duration = Toast.LENGTH_SHORT
             val toast = Toast.makeText(applicationContext, text, duration)
             toast.setGravity(0, 400, -780)
             toast.show()
 
+            val editeur = sharedPreferences.edit()
+            editeur.putInt("nbTotalInBucket",  nbTotalInBucket)
+            editeur.apply()
 
-
-            /*val intent = Intent(this, AccountActivity::class.java)
-            startActivity(intent)*/
+            //création du fichier panier
+            basketItem.quantity = nbInBucket
+            basket.data.add(basketItem)
+            val jsonFile = File(cacheDir.absolutePath,"bucket.json")
+            jsonFile.writeText(GsonBuilder().create().toJson(basket))
 
         }
-        //Enregistrement des preferences utilisateur pour conserver l'ajout au panier
-        editeur.putInt("nbTotalInBucket",  nbTotalInBucket)
-        editeur.apply()
+
+
     }
+
     // Fonction d'affichage du total
     private fun getTotalPrice (nbInBucket: Int) {
         val detailDish = intent.getSerializableExtra("dish") as DishModel
