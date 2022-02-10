@@ -27,6 +27,7 @@ class DetailActivity : AppCompatActivity() {
     lateinit var sharedPreferences: SharedPreferences
     var basket: DataBucket = DataBucket()
     var basketItem: DataBucketItem = DataBucketItem()
+    var newBasket: DataBucket = DataBucket()
 
     private lateinit var binding: ActivityDetailBinding
 
@@ -114,11 +115,12 @@ class DetailActivity : AppCompatActivity() {
             editeur.putInt("nbTotalInBucket",  nbTotalInBucket)
             editeur.apply()
 
-            //création du fichier panier
+            /*création du fichier panier - Merci Patrick pour l'aide à la programmation objet !!!
             basketItem.quantity = nbInBucket
             basket.data.add(basketItem)
-            val jsonFile = File(cacheDir.absolutePath,"bucket.json")
-            jsonFile.writeText(GsonBuilder().create().toJson(basket))
+            val gsonPretty = GsonBuilder().setPrettyPrinting().create()
+            File(cacheDir.absolutePath, "bucket.json").writeText(gsonPretty.toJson(basket))*/
+            getBasketFile(nbInBucket)
 
         }
 
@@ -131,5 +133,23 @@ class DetailActivity : AppCompatActivity() {
         binding.textBucket.text = nbInBucket.toString()
         var resultPrice: Float = nbInBucket * detailDish.prices[0].price.toFloat()
         binding.totalButton.text = "Total" + resultPrice.toString() + "€"
+    }
+
+
+    private fun getBasketFile (nbInBucket: Int){
+        //verification du fichier bucket.json et lecture sinon ecriture
+        val gsonPretty = GsonBuilder().setPrettyPrinting().create()
+        val jsonFile = File(cacheDir.absolutePath, "bucket.json")
+        basketItem.quantity = nbInBucket
+        if (jsonFile.exists()){
+            newBasket = gsonPretty.fromJson(jsonFile.readText(), DataBucket::class.java)
+            newBasket.data.add(basketItem)
+            jsonFile.writeText(gsonPretty.toJson(newBasket))
+        }
+        else {
+            //création du fichier panier - Merci Patrick pour l'aide à la programmation objet !!!
+            basket.data.add(basketItem)
+            jsonFile.writeText(gsonPretty.toJson(basket))
+        }
     }
 }
