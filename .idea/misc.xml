@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/basket.xml" value="0.14322916666666666" />
         <entry key="app/src/main/res/layout/activity_account.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_basket.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_bucket.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/activity_command.xml" value="0.3378623188405797" />
         <entry key="app/src/main/res/layout/activity_dessert.xml" value="0.35572916666666665" />
@@ -14,7 +15,9 @@
         <entry key="app/src/main/res/layout/activity_main_course.xml" value="0.3909853249475891" />
         <entry key="app/src/main/res/layout/activity_signin.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_starters.xml" value="0.2803442028985507" />
+        <entry key="app/src/main/res/layout/cell_basket.xml" value="0.25" />
         <entry key="app/src/main/res/layout/cell_maincourse.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/cell_masket.xml" value="0.2871376811594203" />
         <entry key="app/src/main/res/layout/fragment_blank_images.xml" value="0.25" />
         <entry key="app/src/main/res/layout/pastille.xml" value="0.2" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.22" />

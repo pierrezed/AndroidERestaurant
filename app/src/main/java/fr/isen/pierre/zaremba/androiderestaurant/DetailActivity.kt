@@ -1,7 +1,5 @@
 package fr.isen.pierre.zaremba.androiderestaurant
 
-import android.annotation.SuppressLint
-import android.app.usage.NetworkStats
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,12 +8,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import fr.isen.pierre.zaremba.androiderestaurant.databinding.ActivityDetailBinding
-import fr.isen.pierre.zaremba.androiderestaurant.databinding.ActivityDetailBinding.*
 import fr.isen.pierre.zaremba.androiderestaurant.model.DataBucket
 import fr.isen.pierre.zaremba.androiderestaurant.model.DataBucketItem
 import java.io.File
@@ -42,7 +38,7 @@ class DetailActivity : AppCompatActivity() {
 
         if (id == R.id.action_one) {
             //Toast.makeText(this, "Item One Clicked", Toast.LENGTH_LONG).show()
-            val intent = Intent(this, BucketActivity::class.java)
+            val intent = Intent(this, BasketActivity::class.java)
             startActivity(intent)
             return true
         }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/dishPictureBasket"
+        android:layout_width="84dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="338dp"
+        android:layout_marginBottom="666dp"
+        android:contentDescription="@string/text_Cell"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/itemBasketText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/courgette"
+        android:text="@string/textview"
+        android:textColor="#EF6C00"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toEndOf="@+id/dishPictureBasket"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/itemQuantity"
+        android:layout_width="89dp"
+        android:layout_height="38dp"
+        android:fontFamily="@font/courgette"
+        android:gravity="center"
+        android:text="@string/textview"
+        android:textColor="#3F51B5"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toEndOf="@+id/dishPictureBasket"
+        app:layout_constraintTop_toBottomOf="@+id/itemBasketText"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/trashBasketButton"
+        android:layout_width="35dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="663dp"
+        android:contentDescription="@string/trash_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/itemQuantity"
+        app:layout_constraintTop_toBottomOf="@+id/itemBasketText"
+        app:srcCompat="@drawable/corbeille" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
