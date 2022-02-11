@@ -35,7 +35,6 @@
     <string name="itembucket">ItemBucket</string>
     <string name="passez_votre_commande">Passez votre commande</string>
     <string name="votre_panier">Votre Panier</string>
-    <string name="textview">TextView</string>
-    <string name="textview">TextView</string>
     <string name="trash_image">Trash_image</string>
+    <string name="quantity">quantity</string>
 </resources>

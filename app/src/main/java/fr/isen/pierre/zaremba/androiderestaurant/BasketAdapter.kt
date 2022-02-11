@@ -11,14 +11,14 @@ import fr.isen.pierre.zaremba.androiderestaurant.model.DataBucketItem
 
 
 
-class BasketAdapter(private val basketItems: List<DataBucketItem>, val onItemsViewModelClicked: (DataBucketItem) -> Unit) : RecyclerView.Adapter<BasketAdapter.BasketViewHolder>(){
+class BasketAdapter(private val basketItems: MutableList<DataBucketItem>, val deleteItemListener: (DataBucketItem) -> Unit) : RecyclerView.Adapter<BasketAdapter.BasketViewHolder>(){
 
     class BasketViewHolder(binding: CellBasketBinding) : RecyclerView.ViewHolder(binding.root) {
 
         val dishPictureBasket = binding.dishPictureBasket
         val itemBasketText = binding.itemBasketText
         val itemQuantity = binding.itemQuantity
-        // val trashBasketButton = binding.trashBasketButton
+        val deleteItem = binding.trashBasketButton
 
     }
 
@@ -30,6 +30,7 @@ class BasketAdapter(private val basketItems: List<DataBucketItem>, val onItemsVi
     }
 
     override fun onBindViewHolder(holder: BasketViewHolder, position: Int) {
+
         holder.itemBasketText.text = basketItems[position].dish.name_fr
         holder.itemQuantity.text = basketItems[position].quantity.toString()
         Picasso.get()
@@ -37,11 +38,16 @@ class BasketAdapter(private val basketItems: List<DataBucketItem>, val onItemsVi
             .error(R.drawable.resto)
             .placeholder(R.drawable.resto)
             .into(holder.dishPictureBasket)
-
+        holder.deleteItem.setOnClickListener {
+            deleteItemListener(basketItems[position])
+        }
     }
 
-    // return the number of the items in the list
     override fun getItemCount(): Int {
         return basketItems.size
+    }
 
 }
+
+
+

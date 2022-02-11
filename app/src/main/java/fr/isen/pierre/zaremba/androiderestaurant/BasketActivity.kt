@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import fr.isen.pierre.zaremba.androiderestaurant.databinding.ActivityBasketBinding
 import fr.isen.pierre.zaremba.androiderestaurant.model.DataBucketItem
 import android.content.Intent
+import com.google.gson.GsonBuilder
+import fr.isen.pierre.zaremba.androiderestaurant.model.DataBucket
+import java.io.File
 
 
 class BasketActivity : AppCompatActivity() {
@@ -17,15 +20,16 @@ class BasketActivity : AppCompatActivity() {
         binding = ActivityBasketBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.basketRecycleView.layoutManager = LinearLayoutManager(this)
-
-        binding.basketRecycleView.adapter = BasketAdapter(DataBucketItem)
-
-        // a remplacer par l'accès au fcichier bucket json voir dans detailActivity
-        // récupération de l'objet bucket.kt
-        //val detailDish = intent.getSerializableExtra("dish") as DishModel
-        //basketItem.dish = detailDish
-
+        val gson = GsonBuilder().setPrettyPrinting().create()
+        val jsonFile = File(cacheDir.absolutePath, "bucket.json")
+        if (jsonFile.exists()) {
+            val Basket = gson.fromJson(jsonFile.readText(), DataBucket::class.java)
+            binding.basketRecycleView.adapter = BasketAdapter(Basket.data.toMutableList()) {
+                Basket.data.remove(it)
+                jsonFile.writeText(GsonBuilder().setPrettyPrinting().create().toJson(Basket))
+            }
+            binding.basketRecycleView.layoutManager = LinearLayoutManager(this)
+        }
 
 
         binding.commandBasketButton.setOnClickListener {
@@ -36,4 +40,13 @@ class BasketActivity : AppCompatActivity() {
         }
 
     }
+    /*fun readFile(){
+        val gson = GsonBuilder().setPrettyPrinting().create()
+        val jsonFile = File(cacheDir.absolutePath, "bucket.json")
+        if (jsonFile.exists()){
+            val Basket = gson.fromJson(jsonFile.readText(), DataBucket::class.java)
+            binding.basketRecycleView.adapter = BasketAdapter(Basket.data.toMutableList())
+            binding.basketRecycleView.layoutManager = LinearLayoutManager(this)
+        }
+    }*/
 }
