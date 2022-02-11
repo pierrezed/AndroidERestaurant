@@ -61,7 +61,7 @@ class AccountActivity : AppCompatActivity() {
                     var gson = Gson()
                     var clientResult = gson.fromJson(response.toString(), ClientResult::class.java)
 
-                    if (clientResult.data.id.isNotEmpty() && clientResult.code.isNotEmpty()) {
+                    if (clientResult.data.id.isNotEmpty() && clientResult.code.equals(200)) {
                         val intent = Intent(this, CommandActivity::class.java)
                         startActivity(intent)
                     }

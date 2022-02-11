@@ -70,7 +70,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.3"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/passwordconnexiontext"
@@ -83,7 +84,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.453" />
+        app:layout_constraintVertical_bias="0.453"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/connexionButton"

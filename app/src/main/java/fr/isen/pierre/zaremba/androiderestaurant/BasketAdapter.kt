@@ -39,7 +39,9 @@ class BasketAdapter(private val basketItems: MutableList<DataBucketItem>, val de
             .placeholder(R.drawable.resto)
             .into(holder.dishPictureBasket)
         holder.deleteItem.setOnClickListener {
+            basketItems.remove(basketItems[position])
             deleteItemListener(basketItems[position])
+            notifyDataSetChanged()
         }
     }
 

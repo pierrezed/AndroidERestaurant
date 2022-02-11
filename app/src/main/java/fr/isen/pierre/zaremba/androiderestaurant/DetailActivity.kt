@@ -37,7 +37,6 @@ class DetailActivity : AppCompatActivity() {
         val id = item.getItemId()
 
         if (id == R.id.action_one) {
-            //Toast.makeText(this, "Item One Clicked", Toast.LENGTH_LONG).show()
             val intent = Intent(this, BasketActivity::class.java)
             startActivity(intent)
             return true
@@ -111,11 +110,6 @@ class DetailActivity : AppCompatActivity() {
             editeur.putInt("nbTotalInBucket",  nbTotalInBucket)
             editeur.apply()
 
-            /*création du fichier panier - Merci Patrick pour l'aide à la programmation objet !!!
-            basketItem.quantity = nbInBucket
-            basket.data.add(basketItem)
-            val gsonPretty = GsonBuilder().setPrettyPrinting().create()
-            File(cacheDir.absolutePath, "bucket.json").writeText(gsonPretty.toJson(basket))*/
             getBasketFile(nbInBucket)
 
         }
@@ -137,7 +131,7 @@ class DetailActivity : AppCompatActivity() {
         val gsonPretty = GsonBuilder().setPrettyPrinting().create()
         val jsonFile = File(cacheDir.absolutePath, "bucket.json")
         basketItem.quantity = nbInBucket
-        if (jsonFile.exists()){
+        if (jsonFile.exists() && nbTotalInBucket != 0){
             newBasket = gsonPretty.fromJson(jsonFile.readText(), DataBucket::class.java)
             newBasket.data.add(basketItem)
             jsonFile.writeText(gsonPretty.toJson(newBasket))
