@@ -21,9 +21,9 @@ class AccountActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAccountBinding
 
-    fun isValidString(str: String): Boolean {
+    /*fun isValidString(str: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(str).matches()
-    }
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +31,7 @@ class AccountActivity : AppCompatActivity() {
         binding = ActivityAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonaccountRegister.setOnClickListener { snackClick ->
+        binding.buttonaccountRegister.setOnClickListener {
 
             // vérification du remplissage des champs
             if (binding.accountFirstNameText.text.isEmpty()
@@ -45,7 +45,7 @@ class AccountActivity : AppCompatActivity() {
                 getActionToast(text)
             }
 
-            //envoi de la requète pour récupérzer l'Id Client
+            //envoi de la requète pour récupérer l'Id Client
             val url = "http://test.api.catering.bluecodegames.com/user/register"
             val params = HashMap<String, String>()
             params["id_shop"] = "1"
@@ -61,7 +61,8 @@ class AccountActivity : AppCompatActivity() {
                     var gson = Gson()
                     var clientResult = gson.fromJson(response.toString(), ClientResult::class.java)
 
-                    if (clientResult.data.id.isNotEmpty() && clientResult.code.equals(200)) {
+                    if (clientResult.data.id.isNotEmpty() &&
+                        clientResult.code.toInt() == 200) {
                         val intent = Intent(this, CommandActivity::class.java)
                         startActivity(intent)
                     }
