@@ -48,12 +48,11 @@ class SigninActivity : AppCompatActivity() {
                     var gson = Gson()
                     var clientResult = gson.fromJson(response.toString(), ClientResult::class.java)
 
-                    if (clientResult.data.id.isNotEmpty() &&
-                        clientResult.code.toInt() == 200) {
+                    if (response.toString().contains("data")) {
                         val intent = Intent(this, CommandActivity::class.java)
                         startActivity(intent)
                     }
-                    if (clientResult.code == "NOK") {
+                    else {
                         val text = "Login ou mot de passe incorrect"
                         getActionToast(text)
                     }
