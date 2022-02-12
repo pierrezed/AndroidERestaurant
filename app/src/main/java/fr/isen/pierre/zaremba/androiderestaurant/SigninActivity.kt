@@ -47,7 +47,7 @@ class SigninActivity : AppCompatActivity() {
                 { response ->
                     var gson = Gson()
                     var clientResult = gson.fromJson(response.toString(), ClientResult::class.java)
-
+                    // condition pour avoir un login et MDP reconnu
                     if (response.toString().contains("data")) {
                         val intent = Intent(this, CommandActivity::class.java)
                         startActivity(intent)
