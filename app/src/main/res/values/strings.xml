@@ -37,4 +37,5 @@
     <string name="votre_panier">Votre Panier</string>
     <string name="trash_image">Trash_image</string>
     <string name="quantity">quantity</string>
+    <string name="je_n_ai_pas_pu_aller_plus_loin">je n\'ai pas pu aller plus loin</string>
 </resources>
